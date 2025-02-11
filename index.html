@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наш сайт</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #333;
+            overflow: hidden;
+        }
+
+        /* Анимация сердечек */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: fall linear infinite;
+            top: -50px; /* Начинают падать с самого верха */
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Контейнер для страниц */
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Навигация */
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav button {
+            background: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #ff3b2f;
+        }
+
+        /* Стили для страниц */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6f61;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+<!-- Анимация сердечек -->
+<script>
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+    setInterval(createHeart, 300);
+</script>
+
+<!-- Контейнер для контента -->
+<div class="container">
+    <!-- Навигация -->
+    <nav>
+        <button onclick="showPage('home')">Главная</button>
+        <button onclick="showPage('recipes')">Наши рецептики</button>
+        <button onclick="showPage('plans')">Наши планы</button>
+        <button onclick="showPage('wishes')">Наши желания</button>
+        <button onclick="showPage('memories')">Наши воспоминания</button>
+    </nav>
+
+    <!-- Страницы -->
+    <div id="home" class="page active">
+        <h1>Приветик :3</h1>
+        <p>Это наш маленький уголок счастья. Здесь мы храним наши рецепты, планы, желания и воспоминания.</p>
+    </div>
+
+    <div id="recipes" class="page">
+        <h1>Наши рецептики</h1>
+        <ul>
+            <li>Скоро ^_^</li>
+
+        </ul>
+    </div>
+
+    <div id="plans" class="page">
+        <h1>Наши планы</h1>
+        <ul>
+            <li>Купить домик у моря</li>
+        </ul>
+    </div>
+
+    <div id="wishes" class="page">
+        <h1>Наши желания</h1>
+        <ul>
+            <li>Дима хочет машинку (bmw желательно)</li>
+        </ul>
+    </div>
+
+    <div id="memories" class="page">
+        <h1>Наши воспоминания</h1>
+        <ul>
+            <li>Скоро ^_^</li>
+        </ul>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        Создано с ❤️ для нас
+    </footer>
+</div>
+
+<!-- Скрипт для переключения страниц -->
+<script>
+    function showPage(pageId) {
+        // Скрываем все страницы
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+
+        // Показываем выбранную страницу
+        document.getElementById(pageId).classList.add('active');
+    }
+</script>
+</body>
+</html>
